@@ -30,5 +30,20 @@ public class Util {
     public static int getUf(){
         return 29000;
     }
+
+
+    public static int getSaldoDxc(int ahorro, int sueldo) {
+
+        int dxc = getDxc(ahorro, sueldo);
+
+        return (ahorro-dxc);
+
+    }
+
+    public static int getImpuesto(int sueldo) {
+
+        /* 0 impuesto para TODOS */
+        return 0;
+    }
     
 }
