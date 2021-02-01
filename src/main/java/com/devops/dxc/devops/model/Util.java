@@ -1,6 +1,47 @@
 package com.devops.dxc.devops.model;
 
+
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.net.URL;
+import java.nio.charset.Charset;
+
+
 public class Util {
+
+    private static String readAll(Reader rd) {
+        StringBuilder sb = new StringBuilder();
+        int cp;
+        try {
+            while ((cp = rd.read()) != -1) {
+                sb.append((char) cp);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return sb.toString();
+    }
+
+    public static JSONObject readJsonFromUrl(String url) {
+        try {
+            InputStream is = new URL(url).openStream();
+            try {
+                BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
+                String jsonText = readAll(rd);
+                JSONObject json = new JSONObject(jsonText);
+                return json;
+            } finally {
+                is.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
     /**
      * Método para cacular el 10% del ahorro en la AFP.  Las reglas de negocio se pueden conocer en 
@@ -27,16 +68,25 @@ public class Util {
      * que retorne la UF en tiempo real.  Por ejemplo mindicador.cl
      * @return
      */
-    public static int getUf(){
-        return 29000;
+    public static Double getUf(){
+
+
+        String url = "https://mindicador.cl/api/";
+
+        JSONObject json = readJsonFromUrl(url);
+
+        JSONObject objUf = json.getJSONObject("uf"); // Con esto obtienes el objeto uf
+
+        System.out.println(objUf.getString("fecha"));
+        System.out.println(objUf.getDouble("valor"));
+
+        return objUf.getDouble("valor");
     }
 
 
     public static int getSaldoDxc(int ahorro, int sueldo) {
 
-        int dxc = getDxc(ahorro, sueldo);
-
-        return (ahorro-dxc);
+        return (ahorro-getDxc(ahorro, sueldo));
 
     }
 
