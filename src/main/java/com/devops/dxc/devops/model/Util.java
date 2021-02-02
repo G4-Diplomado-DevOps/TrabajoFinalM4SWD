@@ -2,7 +2,6 @@ package com.devops.dxc.devops.model;
 
 
 import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
