@@ -18,6 +18,9 @@ Microservicio Lab M4
       "ahorro": 5000000
     }
 
+# Generar Jar 
+> mvn clean package -e
+
 # Ejecutar con el binario
 
 * levanta por defecto en el port 8079

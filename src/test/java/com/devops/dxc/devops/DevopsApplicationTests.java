@@ -1,6 +1,7 @@
 package com.devops.dxc.devops;
 
 import com.devops.dxc.devops.model.Dxc;
+import com.devops.dxc.devops.model.Util;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -12,22 +13,31 @@ class DevopsApplicationTests {
 	@Test
 	void TestgetDxc() {
 
-		// ahorro > 135 UF y << 135UF*10
-		assertEquals(1000000, new Dxc(5000000,500000).getDxc());
+		// ahorro > 150 UF y << 150*10 -> retornar 35 UF!
+		assertEquals(35*Util.getUf(), new Dxc(5000000,500000).getDxc());
 
-		// ahorro >= 135UF*10*10
-		assertEquals(4371516, new Dxc(45000000, 500000).getDxc());
+		// ahorro >= 150UF*10
+		assertEquals(150*Util.getUf(), new Dxc(45000000, 500000).getDxc());
+
+		// ahorro < 35UF
+		assertEquals(750000, new Dxc(750000, 500000).getDxc());
+
+		// ahorro < 135 UF y > 35UF -> retornar 35 UF!
+		assertEquals(35*Util.getUf(), new Dxc(2500000, 500000).getDxc());
 
 	}
 
 	@Test
 	void TestgetSaldoDxc() {
 
-		// saldo 5.000.000 - 1.000.000
-		assertEquals(4000000, new Dxc(5000000,500000).getSaldo());
+		// saldo 45.000.000 - 150UF
+		assertEquals(45000000-150*Util.getUf(), new Dxc(45000000,500000).getSaldo());
 
-		// saldo: 1.200.000 - 1.000.000
-		assertEquals(200000, new Dxc(1200000,500000).getSaldo());
+		// saldo 5.000.000 - 35UF
+		assertEquals(5000000-35*Util.getUf(), new Dxc(5000000,500000).getSaldo());
+
+		// saldo: 1.200.000 - 35UF
+		assertEquals(1200000-35*Util.getUf(), new Dxc(1200000,500000).getSaldo());
 
 		// saldo: 0 (750.000 - 750.000)
 		assertEquals(0, new Dxc(750000,500000).getSaldo());
