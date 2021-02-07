@@ -16,7 +16,7 @@ class DevopsApplicationTests {
 		assertEquals(1000000, new Dxc(5000000,500000).getDxc());
 
 		// ahorro >= 135UF*10*10
-		assertEquals(4369405, new Dxc(45000000, 500000).getDxc());
+		assertEquals(4371516, new Dxc(45000000, 500000).getDxc());
 
 	}
 
