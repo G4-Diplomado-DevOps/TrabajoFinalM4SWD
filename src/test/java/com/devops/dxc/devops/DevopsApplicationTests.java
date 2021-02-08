@@ -2,15 +2,21 @@ package com.devops.dxc.devops;
 
 import com.devops.dxc.devops.model.Dxc;
 import com.devops.dxc.devops.model.Util;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+
 @SpringBootTest
 class DevopsApplicationTests {
 
+//	@DisplayName("A special test case")
+//	class DisplayNameDemo {
+
 	@Test
+	@DisplayName("Test calcular 10%")
 	void TestgetDxc() {
 
 		// ahorro > 150 UF y << 150*10 -> retornar 35 UF!
@@ -74,4 +80,5 @@ class DevopsApplicationTests {
 	void contextLoads() {
 	}
 
+//}
 }
