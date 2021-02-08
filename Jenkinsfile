@@ -2,25 +2,25 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('Install newman') {
+            steps {
+                sh "npm install -g newman"
+            }
+        }
+
+        stage('test JUnit') {
             steps {
                 sh "mvn clean test -e"
             }
         }
 
-/*        stage('test') {
-            steps {
-                sh "/usr/local/opt/maven/bin/mvn compile"
-            }
-        }
-
-        stage('test2') {
+        stage('test Postman') {
             steps {
                 sh '''
-                    /usr/local/opt/maven/bin/mvn test
+                    newman run Test-WebServices.postman_collection.json
                 '''
             }
         }
-*/    }
+    }
 }
 
