@@ -83,8 +83,8 @@ public class Util {
 
         JSONObject objUf = json != null ? json.getJSONObject("uf") : null;
 
-        System.out.println(objUf != null ? objUf.getString("fecha") : null);
-        System.out.println(objUf.getDouble("valor"));
+        // System.out.println(objUf != null ? objUf.getString("fecha") : null);
+        // System.out.println(objUf.getDouble("valor"));
 
         return (int)objUf.getDouble("valor");
     }

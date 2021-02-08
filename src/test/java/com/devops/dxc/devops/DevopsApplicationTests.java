@@ -2,16 +2,23 @@ package com.devops.dxc.devops;
 
 import com.devops.dxc.devops.model.Dxc;
 import com.devops.dxc.devops.model.Util;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.TestInfo;
+
 
 @SpringBootTest
+@DisplayName("Clase de Test - Calculadora10%")
 class DevopsApplicationTests {
 
 	@Test
-	void TestgetDxc() {
+	@DisplayName(value = "Test Calcular 10% -> getDxc")
+	void TestgetDxc(TestInfo testInfo) {
+
+		System.out.println(testInfo.getDisplayName());
 
 		// ahorro > 150 UF y << 150*10 -> retornar 35 UF!
 		assertEquals(35*Util.getUf(), new Dxc(5000000,500000).getDxc());
@@ -28,7 +35,10 @@ class DevopsApplicationTests {
 	}
 
 	@Test
-	void TestgetSaldoDxc() {
+	@DisplayName(value = "Test Saldo de Cuenta AFP -> getSaldoDxc")
+	void TestgetSaldoDxc(TestInfo testInfo) {
+
+		System.out.println(testInfo.getDisplayName());
 
 		// saldo 45.000.000 - 150UF
 		assertEquals(45000000-150*Util.getUf(), new Dxc(45000000,500000).getSaldo());
@@ -45,7 +55,10 @@ class DevopsApplicationTests {
 	}
 
 	@Test
-	void TestgetImpuesto() {
+	@DisplayName(value = "Test impuesto al retiro -> getImpuesto")
+	void TestgetImpuesto(TestInfo testInfo) {
+
+		System.out.println(testInfo.getDisplayName());
 
 		// impuesto 0 (sueldo < 1.500.000)
 		assertEquals(0, new Dxc(10000000,1400000).getImpuesto());
