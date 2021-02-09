@@ -21,6 +21,17 @@ pipeline {
                 '''
             }
         }
+        stage('test Postman') {
+            steps {
+                sh '''
+		wget https://github.com/G4-Diplomado-DevOps/TrabajoFinalM4Postman/blob/main/test-postman-ms.json
+		mkdir drivers
+		mkdir drivers/chromedriver
+		cd drivers/chromedriver
+		
+		'''
+	    }
+	}
     }
 }
 
