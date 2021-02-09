@@ -17,11 +17,12 @@ pipeline {
         stage('test Postman') {
             steps {
                 sh '''
+		    wget https://github.com/G4-Diplomado-DevOps/TrabajoFinalM4Postman/blob/main/test-postman-ms.json
                     newman run Test-WebServices.postman_collection.json
                 '''
             }
         }
-        stage('test Postman') {
+        stage('test Selenium') {
             steps {
                 sh '''
 		wget https://github.com/G4-Diplomado-DevOps/TrabajoFinalM4Postman/blob/main/test-postman-ms.json
